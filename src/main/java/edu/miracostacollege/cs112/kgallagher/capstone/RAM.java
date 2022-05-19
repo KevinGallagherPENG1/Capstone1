@@ -40,9 +40,9 @@ public class RAM extends ComputerPart{
     @Override
     public String toString() {
         return "RAM{" +
-                "mRAMGB=" + mRAMGB +
-                ", mRAMSpeed=" + mRAMSpeed +
-                ", mName='" + mName + '\'' +
+                "RAM GB=" + mRAMGB +
+                ", RAM Speed=" + mRAMSpeed +
+                ", Name='" + mName + '\'' +
                 '}';
     }
 
@@ -50,4 +50,6 @@ public class RAM extends ComputerPart{
         mRAMGB = RAMGB;
         mRAMSpeed = RAMSpeed;
     }
+
+    //TODO: COMPARISON
 }

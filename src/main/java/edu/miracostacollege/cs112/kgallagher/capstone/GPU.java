@@ -1,5 +1,7 @@
 package edu.miracostacollege.cs112.kgallagher.capstone;
 
+import java.util.Objects;
+
 public class GPU extends ComputerPart{
     private String mGPUType;
     private int mGPUFPS;
@@ -21,12 +23,44 @@ public class GPU extends ComputerPart{
 
     public void setGPUFPS(int GPUFPS){mGPUFPS = GPUFPS;}
     
-    @Override
-    public boolean equals(Object o) {
+
+   /* public boolean equals(Object o) {
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
         if(!super.equals(o)) return false;
         GPU gpu = (GPU) o;
-        return double.compare(gpu.mGPUType, mGPUType)
+        return double.compare(gpu.mGPUType, mGPUType);
+        }
+    */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        GPU gpu = (GPU) o;
+        return mGPUFPS == gpu.mGPUFPS && Objects.equals(mGPUType, gpu.mGPUType);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), mGPUType, mGPUFPS);
+    }
+
+    //TODO: clean up toString
+    @Override
+    public String toString() {
+        return "GPU{" +
+                "GPUType='" + mGPUType + '\'' +
+                ", GPUFPS=" + mGPUFPS +
+                ", Name='" + mName + '\'' +
+                '}';
+    }
+
+    public GPU(String GPUType, int GPUFPS) {
+        mGPUType = GPUType;
+        mGPUFPS = GPUFPS;
+    }
+
+    //TODO: COMPARISON
 }

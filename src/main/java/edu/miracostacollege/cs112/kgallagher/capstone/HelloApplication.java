@@ -25,7 +25,7 @@ public class HelloApplication extends Application {
 
     private TextField RAMTF = new TextField();                      //name
     private Label RAML = new Label("RAM");                       //label for ram
-    private Slider RAMGBSlider = new Slider(1, 256, 16);                          //slider for Ram GB
+    private Slider RAMGBSlider = new Slider(8, 64, 16);                          //slider for Ram GB
     private TextField RAMSpeedTF = new TextField();             // ram speed
 
     private Label GPUL = new Label("GPU");                            //label for GPU
@@ -56,7 +56,7 @@ public class HelloApplication extends Application {
         //Slider config
         RAMGBSlider.setShowTickMarks(true);
         RAMGBSlider.setShowTickLabels(true);
-        RAMGBSlider.setBlockIncrement(1);
+        RAMGBSlider.setBlockIncrement(2);
         RAMGBSlider.setSnapToTicks(true);
         RAMGBSlider.setMajorTickUnit(2);
 
@@ -66,7 +66,10 @@ public class HelloApplication extends Application {
         CPUSpeedS.setSnapToTicks(true);
         CPUSpeedS.setMajorTickUnit(1);
 
+        addToButton.isFocused();
 
+        //comboBox config
+        //TODO: COMBOBOX!!!
 
 
         GridPane pane = new GridPane();
