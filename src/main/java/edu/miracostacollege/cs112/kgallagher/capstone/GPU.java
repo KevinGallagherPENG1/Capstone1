@@ -26,6 +26,7 @@ public class GPU extends ComputerPart{
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
         if(!super.equals(o)) return false;
-        GPU gpu = gpu
+        GPU gpu = (GPU) o;
+        return double.compare(gpu.mGPUType, mGPUType)
     }
 }
