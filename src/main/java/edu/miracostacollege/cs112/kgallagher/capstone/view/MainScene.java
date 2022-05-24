@@ -1,35 +1,36 @@
-package edu.miracostacollege.cs112.kgallagher.capstone;
+package edu.miracostacollege.cs112.kgallagher.capstone.view;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-
-public class HelloApplication extends Application {
-
-
+public class MainScene extends Scene {
     //TODO: URGENT: CONFIGURE ALL COMBOBOXES!!!
 
     //fields
     private Label GUITitle = new Label("Computer Comparer");
 
+    private Label errLabel = new Label("All fields must be filled!");
+
     private TextField CPUTF = new TextField();                       //name
     private Label CPUL = new Label("CPU");                         //label for cpu
     private ComboBox<Integer> CPUCoreCB = new ComboBox<>();  //core count cpu
-    private Slider CPUSpeedS = new Slider(1, 10, 4.5);                           //double clockspeed, min, max, default  =  v, v1, v2
+    private Slider CPUSpeedS = new Slider(1, 6, 4.5);                           //double clockspeed, min, max, default  =  v, v1, v2
+
+    private Label CPUSLabel = new Label("Maximum Clockspeed (MHz)");
+    private Label CPUCBLabel = new Label("Cores");
 
     private TextField RAMTF = new TextField();                      //name
     private Label RAML = new Label("RAM");                       //label for ram
-    private Slider RAMGBSlider = new Slider(8, 64, 16);                          //slider for Ram GB
+    private Slider RAMGBSlider = new Slider(8, 32, 16);                          //slider for Ram GB
     private TextField RAMSpeedTF = new TextField();             // ram speed
+    private Label RAMGBSLabel = new Label("Amount of RAM (GB)");
 
     private Label GPUL = new Label("GPU");                            //label for GPU
     private ComboBox<String> GPUTypeCB = new ComboBox<>();   //type of GPU / name
+    private Label GPUCBLabel = new Label("GPU Name");
 
     private TextField StorageNameTF = new TextField();                      //name
     private ComboBox<String> StorageCB = new ComboBox<>();      //m.2, hdd, ssd
@@ -50,10 +51,8 @@ public class HelloApplication extends Application {
 
 
 
-
-
-    public void start(Stage stage) throws IOException {
-        //Slider config
+    public MainScene(){
+        super(new GridPane(), 720, 720);
         RAMGBSlider.setShowTickMarks(true);
         RAMGBSlider.setShowTickLabels(true);
         RAMGBSlider.setBlockIncrement(2);
@@ -70,6 +69,18 @@ public class HelloApplication extends Application {
 
         //comboBox config
         //TODO: COMBOBOX!!!
+        CPUCoreCB.getItems().addAll(1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20);
+
+
+
+
+        /*TODO: IMPLEMENT GPU COMBOBOX ONCE CSV IS IMPLEMENTED
+        GPUTypeCB.getItems.addAll();
+
+         */
+
+        StorageCB.getItems().addAll("HDD", "SSD", "M.2 SSD");
+
 
 
         GridPane pane = new GridPane();
@@ -77,11 +88,11 @@ public class HelloApplication extends Application {
         pane.setVgap(5);
 
 
-        Scene scene = new Scene(pane, 1000, 1000);
-        stage.setTitle("PC COMPARISON");
-        stage.setScene(scene);
-        stage.show();
-
+        //hbox
+        //hbox
+        HBox cpuHBox = new HBox(CPUCoreCB, CPUCBLabel);
+        cpuHBox.setSpacing(15);
+        cpuHBox.setAlignment(Pos.BASELINE_LEFT);
 
         //add stuff to the gridPane
         pane.add(GUITitle, 1,0);
@@ -89,8 +100,10 @@ public class HelloApplication extends Application {
         pane.add(CPUL, 0, 2);
         pane.add(CPUTF, 1, 1);
         CPUTF.setPromptText("Name of CPU");
+        pane.add(cpuHBox, 1, 2);
         pane.add(CPUCoreCB, 1, 2);
         pane.add(CPUSpeedS, 1, 3);
+        pane.add(CPUSLabel, 2, 3);
         //ram
         pane.add(RAML, 0, 5);
         pane.add(RAMTF, 1, 4);
@@ -98,6 +111,7 @@ public class HelloApplication extends Application {
         pane.add(RAMGBSlider, 1, 5);
         pane.add(RAMSpeedTF, 1, 6);
         RAMSpeedTF.setPromptText("Speed of RAM in GHz");
+        pane.add(RAMGBSLabel, 2, 5);
         //gpu
         pane.add(GPUL, 0, 8);
         pane.add(GPUTypeCB, 1, 8);
@@ -122,9 +136,9 @@ public class HelloApplication extends Application {
         HBox hBox = new HBox(addToButton, tierListButton);
         pane.add(hBox, 1, 19);
 
-    }
 
-    public static void main(String[] args) {
-        launch();
+
+
+        this.setRoot(pane); //this makes scene visible for some goddamned reason
     }
 }

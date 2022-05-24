@@ -1,8 +1,8 @@
-package edu.miracostacollege.cs112.kgallagher.capstone;
+package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class RAM extends ComputerPart{
+public class RAM extends ComputerPart {
     private double mRAMGB;
     private int mRAMSpeed;
 

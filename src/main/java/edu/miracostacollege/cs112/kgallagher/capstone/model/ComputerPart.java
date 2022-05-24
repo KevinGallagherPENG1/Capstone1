@@ -1,4 +1,4 @@
-package edu.miracostacollege.cs112.kgallagher.capstone;
+package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.io.Serializable;
 import java.util.Objects;

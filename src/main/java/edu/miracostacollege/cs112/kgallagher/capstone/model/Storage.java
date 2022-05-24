@@ -1,8 +1,8 @@
-package edu.miracostacollege.cs112.kgallagher.capstone;
+package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class Storage extends ComputerPart{
+public class Storage extends ComputerPart {
     private String mStorage;
     private double mStorageAmount;
 

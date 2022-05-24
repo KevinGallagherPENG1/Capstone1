@@ -1,8 +1,8 @@
-package edu.miracostacollege.cs112.kgallagher.capstone;
+package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class Screen extends ComputerPart{
+public class Screen extends ComputerPart {
     private String mScreen;
 
     public String getScreen() {
