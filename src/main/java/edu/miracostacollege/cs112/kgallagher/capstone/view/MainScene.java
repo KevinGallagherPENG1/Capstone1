@@ -1,8 +1,12 @@
 package edu.miracostacollege.cs112.kgallagher.capstone.view;
 
+import edu.miracostacollege.cs112.kgallagher.capstone.Controller.Controller;
+import edu.miracostacollege.cs112.kgallagher.capstone.model.ComputerPart;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -36,6 +40,7 @@ public class MainScene extends Scene {
     private ComboBox<String> StorageCB = new ComboBox<>();      //m.2, hdd, ssd
     private Label StorageL = new Label("Storage");              //label for ssd
     private TextField StorageTF = new TextField();                      //storage amount
+    private Label StorageCBLabel = new Label("Type of Storage");
 
 
     private Label CoolingL = new Label("Cooling");                      //label for cooling
@@ -47,6 +52,19 @@ public class MainScene extends Scene {
 
     private Button addToButton = new Button("Publish Build");
     private Button tierListButton = new Button("Compare to Other Builds");
+
+
+    //images
+    private ImageView computerIV = new ImageView();
+
+    //needed for list
+    private Controller controller =  Controller.getInstance();
+
+    private ObservableList<ComputerPart> computerList;
+
+    private ComputerPart selectedComputer;
+
+    private ListView<ComputerPart> computerLV = new ListView<>();
 
 
 
@@ -70,6 +88,7 @@ public class MainScene extends Scene {
         //comboBox config
         //TODO: COMBOBOX!!!
         CPUCoreCB.getItems().addAll(1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20);
+        CoolingTypeCB.getItems().addAll("Heat Sink", "Liquid Cooling");
 
 
 
@@ -89,10 +108,15 @@ public class MainScene extends Scene {
 
 
         //hbox
-        //hbox
         HBox cpuHBox = new HBox(CPUCoreCB, CPUCBLabel);
         cpuHBox.setSpacing(15);
         cpuHBox.setAlignment(Pos.BASELINE_LEFT);
+        HBox gpuHBox = new HBox(GPUTypeCB, GPUCBLabel);
+        gpuHBox.setSpacing(15);
+        gpuHBox.setAlignment(Pos.BASELINE_LEFT);
+        HBox storageHBox = new HBox(StorageCB, StorageCBLabel);
+        storageHBox.setSpacing(15);
+        storageHBox.setAlignment(Pos.BASELINE_LEFT);
 
         //add stuff to the gridPane
         pane.add(GUITitle, 1,0);
@@ -101,7 +125,7 @@ public class MainScene extends Scene {
         pane.add(CPUTF, 1, 1);
         CPUTF.setPromptText("Name of CPU");
         pane.add(cpuHBox, 1, 2);
-        pane.add(CPUCoreCB, 1, 2);
+        //pane.add(CPUCoreCB, 1, 2);
         pane.add(CPUSpeedS, 1, 3);
         pane.add(CPUSLabel, 2, 3);
         //ram
@@ -114,12 +138,13 @@ public class MainScene extends Scene {
         pane.add(RAMGBSLabel, 2, 5);
         //gpu
         pane.add(GPUL, 0, 8);
-        pane.add(GPUTypeCB, 1, 8);
+        //pane.add(GPUTypeCB, 1, 8);
+        pane.add(gpuHBox, 1, 8);
         //storage
         pane.add(StorageL, 0, 11);
         pane.add(StorageNameTF, 1, 10);
         StorageNameTF.setPromptText("Name of Storage");
-        pane.add(StorageCB, 1, 11);
+        pane.add(storageHBox, 1, 11);
         pane.add(StorageTF, 1, 12); //AMOUNT OF STORAGE
         StorageTF.setPromptText("Amount of Storage in GB");
         //cooling
@@ -138,7 +163,20 @@ public class MainScene extends Scene {
 
 
 
+        //method time (almost)
+        computerList = controller.getAllParts();
+        computerLV.setItems(computerList);
+        computerLV.getSelectionModel().selectedItemProperty().addListener((obsVal, oldVal, newVal) -> selectComputer(newVal));
+
+
+
 
         this.setRoot(pane); //this makes scene visible for some goddamned reason
     }
+
+    private void selectComputer(ComputerPart newVal){
+        selectedComputer = newVal;
+        //removeButton.setDisable(selectedInfluencer == null);
+    }
+
 }
