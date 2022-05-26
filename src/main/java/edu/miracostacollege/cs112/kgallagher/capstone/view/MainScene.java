@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 public class MainScene extends Scene {
     //TODO: URGENT: CONFIGURE ALL COMBOBOXES!!!
@@ -17,6 +18,9 @@ public class MainScene extends Scene {
     private Label GUITitle = new Label("Computer Comparer");
 
     private Label errLabel = new Label("All fields must be filled!");
+
+    private Label numberErrLabel1 = new Label("Please format as an Arabic Numeral (1, 2, 3, etc) ");
+    private Label numberErrLabel2 = new Label("Please format as an Arabic Numeral (1, 2, 3, etc) ");
 
     private TextField CPUTF = new TextField();                       //name
     private Label CPUL = new Label("CPU");                         //label for cpu
@@ -93,10 +97,10 @@ public class MainScene extends Scene {
 
 
 
-        /*TODO: IMPLEMENT GPU COMBOBOX ONCE CSV IS IMPLEMENTED
-        GPUTypeCB.getItems.addAll();
 
-         */
+        GPUTypeCB.getItems().addAll("1050", "1060", "1070", "1080", "2060", "2070", "2080", "2090", "3060", "3070", "3080", "3090");
+
+
 
         StorageCB.getItems().addAll("HDD", "SSD", "M.2 SSD");
 
@@ -160,6 +164,15 @@ public class MainScene extends Scene {
         //two buttons
         HBox hBox = new HBox(addToButton, tierListButton);
         pane.add(hBox, 1, 19);
+        pane.add(errLabel, 2, 19);
+        errLabel.setVisible(false);
+        errLabel.setTextFill(Color.RED);
+        pane.add(numberErrLabel1, 2, 12);
+        pane.add(numberErrLabel2, 2, 6);
+        numberErrLabel1.setVisible(false);
+        numberErrLabel2.setVisible(false);
+        numberErrLabel1.setTextFill(Color.RED);
+        numberErrLabel2.setTextFill(Color.RED);
 
 
 
@@ -169,6 +182,8 @@ public class MainScene extends Scene {
         computerLV.getSelectionModel().selectedItemProperty().addListener((obsVal, oldVal, newVal) -> selectComputer(newVal));
 
 
+        tierListButton.setOnAction(event -> changeScene());
+        addToButton.setOnAction(event -> addComputer());
 
 
         this.setRoot(pane); //this makes scene visible for some goddamned reason
@@ -177,6 +192,29 @@ public class MainScene extends Scene {
     private void selectComputer(ComputerPart newVal){
         selectedComputer = newVal;
         //removeButton.setDisable(selectedInfluencer == null);
+    }
+
+    private void changeScene(){
+        ViewNavigator.loadScene("Computer List", new ListScene());
+    }
+
+    private void addComputer(){
+        String nameCPU, nameRAM, nameGPU, nameStorage, nameScreen, nameCooling, screenHZ, storageType;
+        int cores, speedRAM;
+        double speedCPU, GBRAM, storageAmount;
+
+        nameCPU = CPUTF.getText();
+        errLabel.setVisible(nameCPU.isEmpty());
+        nameRAM = RAMTF.getText();
+        errLabel.setVisible(nameRAM.isEmpty());
+        nameGPU = GPUTypeCB.getSelectionModel().getSelectedItem();
+        errLabel.setVisible(nameGPU.isEmpty());
+        nameStorage = StorageNameTF.getText();
+        errLabel.setVisible(nameStorage.isEmpty());
+        nameCooling = CoolingTypeCB.getSelectionModel().getSelectedItem();
+        errLabel.setVisible(nameCooling.isEmpty());
+        nameScreen = ScreenNameTF.getText();
+        errLabel.setVisible(nameScreen.isEmpty());
     }
 
 }
