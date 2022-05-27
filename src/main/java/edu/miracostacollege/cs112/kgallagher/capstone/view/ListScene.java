@@ -1,13 +1,12 @@
 package edu.miracostacollege.cs112.kgallagher.capstone.view;
 
 import edu.miracostacollege.cs112.kgallagher.capstone.Controller.Controller;
+import edu.miracostacollege.cs112.kgallagher.capstone.model.ComputerBuild;
 import edu.miracostacollege.cs112.kgallagher.capstone.model.ComputerPart;
-import edu.miracostacollege.cs112.kgallagher.capstone.view.MainScene;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -17,9 +16,9 @@ public class ListScene extends Scene {
     //this will be the scene where the builds are listed, one can delete and view builds
     private Button deleteButton = new Button("Remove Build");
     private Button goBackButton = new Button("Add Another Build");
-    private ListView<ComputerPart> partsLV = new ListView<>();
-    private ObservableList<ComputerPart> partsList;
-    private ComputerPart selectedPart;
+    private ListView<ComputerBuild> partsLV = new ListView<>();
+    private ObservableList<ComputerBuild> partsList;
+    private ComputerBuild selectedPart;
     private Controller controller = Controller.getInstance();
     public ListScene(){
         super(new GridPane(), 720, 720);
@@ -35,7 +34,7 @@ public class ListScene extends Scene {
         pane.add(hBox, 0, 1);
 
 
-        partsList = controller.getAllParts();
+        partsList = controller.getAllBuilds();
         partsLV.setItems(partsList);
         partsLV.setPrefWidth(780);
         this.setRoot(pane);

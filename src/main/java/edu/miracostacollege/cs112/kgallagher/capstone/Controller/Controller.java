@@ -1,12 +1,12 @@
 package edu.miracostacollege.cs112.kgallagher.capstone.Controller;
 
-import edu.miracostacollege.cs112.kgallagher.capstone.model.ComputerPart;
+import edu.miracostacollege.cs112.kgallagher.capstone.model.ComputerBuild;
 import edu.miracostacollege.cs112.kgallagher.capstone.model.Model;
 import javafx.collections.ObservableList;
 
 public class Controller {
     private static Controller theInstance;
-    private ObservableList<ComputerPart> mList;
+    private ObservableList<ComputerBuild> mList;
 
     private Controller(){}
 
@@ -18,7 +18,7 @@ public class Controller {
         return theInstance;
     }
 
-    public ObservableList<ComputerPart> getAllParts() {return mList;}
+    public ObservableList<ComputerBuild> getAllBuilds() {return mList;}
 
     public void saveData(){Model.writeDataToBinaryFile(mList);}
 }

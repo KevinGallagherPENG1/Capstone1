@@ -62,7 +62,7 @@ public class GPU extends ComputerPart {
         mGPUFPS = GPUFPS;
     }
 
-    //TODO: COMPARISON
+    //TODO: COMPARISON (look at Cooling.java)
     public int compareTo(GPU o){
         int GPUComp = this.mGPUType.compareToIgnoreCase(o.mGPUType);
         if(GPUComp != 0) return GPUComp;

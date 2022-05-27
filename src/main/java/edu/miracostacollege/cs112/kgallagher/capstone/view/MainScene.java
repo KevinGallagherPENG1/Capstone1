@@ -1,8 +1,7 @@
 package edu.miracostacollege.cs112.kgallagher.capstone.view;
 
 import edu.miracostacollege.cs112.kgallagher.capstone.Controller.Controller;
-import edu.miracostacollege.cs112.kgallagher.capstone.model.ComputerPart;
-import javafx.beans.value.ChangeListener;
+import edu.miracostacollege.cs112.kgallagher.capstone.model.*;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -65,11 +64,11 @@ public class MainScene extends Scene {
     //needed for list
     private Controller controller =  Controller.getInstance();
 
-    private ObservableList<ComputerPart> computerList;
+    private ObservableList<ComputerBuild> buildsList;
 
-    private ComputerPart selectedComputer;
+    private ComputerBuild selectedBuild;
 
-    public ListView<ComputerPart> computerLV = new ListView<>();
+    public ListView<ComputerBuild> buildsLV = new ListView<>();
 
 
 
@@ -179,9 +178,9 @@ public class MainScene extends Scene {
 
 
         //method time (almost)
-        computerList = controller.getAllParts();
-        computerLV.setItems(computerList);
-        computerLV.getSelectionModel().selectedItemProperty().addListener((obsVal, oldVal, newVal) -> selectComputer(newVal));
+        buildsList = controller.getAllBuilds();
+        buildsLV.setItems(buildsList);
+        buildsLV.getSelectionModel().selectedItemProperty().addListener((obsVal, oldVal, newVal) -> selectBuild(newVal));
 
 
         tierListButton.setOnAction(event -> changeScene());
@@ -191,8 +190,8 @@ public class MainScene extends Scene {
         this.setRoot(pane); //this makes scene visible for some goddamned reason
     }
 
-    private void selectComputer(ComputerPart newVal){
-        selectedComputer = newVal;
+    private void selectBuild(ComputerBuild newVal){
+        selectedBuild = newVal;
         //removeButton.setDisable(selectedInfluencer == null);
     }
 
@@ -230,10 +229,18 @@ public class MainScene extends Scene {
         speedCPU = CPUSpeedS.getValue();
         GBRAM = RAMGBSlider.getValue();
 
-        //TODO: HERE IS THE MAIN PROBLEM
-        //computerList.add(nameCPU, cores, speedCPU, nameRAM, GBRAM, speedRAM, nameGPU, nameStorage, storageType, storageAmount, nameCooling, nameScreen, screenHZ);
+        //TODO: Kev - I made a new class ComputerBuild, which has all
+        // the parts (CPU, RAM, GPU, Storage, Cooling, Screen) as fields.
+        ComputerBuild build = new ComputerBuild();
+        build.setCPU(new CPU(cores, speedCPU));
+        // TODO: Use the setters to instantiate new RAM, GPU, Storage, Cooling, Screen objects
+        // TODO: just like setCPU is used here
 
-        computerLV.refresh();
+
+        // Adds the new build to the list
+        buildsList.add(build);
+
+        buildsLV.refresh();
     }
 
 

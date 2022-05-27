@@ -44,7 +44,7 @@ public class CPU extends ComputerPart {
         mSpeed = speed;
     }
 
-    //TODO: COMPARISON
+    //TODO: COMPARISON (look at Cooling.java)
     public int compareTo(CPU o){
         int coreComp = this.mCores - o.mCores;
         if(coreComp != 0) return coreComp;
