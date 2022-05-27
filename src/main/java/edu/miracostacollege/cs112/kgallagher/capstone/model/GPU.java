@@ -2,7 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class GPU extends ComputerPart implements Comparable<GPU>{
+public class GPU extends ComputerPart {
     private String mGPUType;
     private int mGPUFPS;
 

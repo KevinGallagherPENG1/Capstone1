@@ -2,7 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class CPU extends ComputerPart implements Comparable<CPU>{
+public class CPU extends ComputerPart {
     private int mCores;
     private double mSpeed;
 

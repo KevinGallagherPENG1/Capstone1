@@ -2,7 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class RAM extends ComputerPart implements Comparable<RAM> {
+public class RAM extends ComputerPart {
     private double mRAMGB;
     private double mRAMSpeed;
 

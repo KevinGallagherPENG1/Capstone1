@@ -2,7 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class Storage extends ComputerPart implements Comparable<Storage>{
+public class Storage extends ComputerPart {
     private String mStorage;
     private double mStorageAmount;
 

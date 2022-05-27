@@ -2,7 +2,11 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class Cooling extends ComputerPart implements Comparable<Cooling>{
+// TODO:  I removed the implements Comparable<Cooling>
+// TODO:  And just overrode the compareTo method below.
+
+// TODO: Please do the same for the other child classes.
+public class Cooling extends ComputerPart {
     private String mCoolingType;
 
     public String getCoolingType() {
@@ -41,7 +45,15 @@ public class Cooling extends ComputerPart implements Comparable<Cooling>{
         mCoolingType = coolingType;
     }
 
-    public int compareTo(Cooling o){
-        return(mCoolingType.compareToIgnoreCase(o.mCoolingType));
+    @Override
+    public int compareTo(ComputerPart o){
+        if (!(o instanceof Cooling))
+            throw new IllegalArgumentException();
+
+        int partComp = super.compareTo(o);
+        if (partComp != 0) return partComp;
+
+        Cooling other = (Cooling) o;
+        return(mCoolingType.compareToIgnoreCase(other.mCoolingType));
     }
 }

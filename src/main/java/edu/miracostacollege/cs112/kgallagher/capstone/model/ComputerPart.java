@@ -3,7 +3,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ComputerPart implements Serializable, Comparable<ComputerPart> {
+public abstract class ComputerPart implements Serializable, Comparable<ComputerPart> {
 
     protected String mName;
 
@@ -33,7 +33,7 @@ public class ComputerPart implements Serializable, Comparable<ComputerPart> {
         return "Computer Part { Name = " +mName;
     }
 
-    public int compareTo(ComputerPart o){
+    public int compareTo(ComputerPart o) {
         return(this.mName.compareToIgnoreCase(o.mName));
     }
 
