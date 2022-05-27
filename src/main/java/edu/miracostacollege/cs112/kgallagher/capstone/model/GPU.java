@@ -2,7 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class GPU extends ComputerPart{
+public class GPU extends ComputerPart implements Comparable<GPU>{
     private String mGPUType;
     private int mGPUFPS;
 
@@ -63,4 +63,10 @@ public class GPU extends ComputerPart{
     }
 
     //TODO: COMPARISON
+    public int compareTo(GPU o){
+        int GPUComp = this.mGPUType.compareToIgnoreCase(o.mGPUType);
+        if(GPUComp != 0) return GPUComp;
+
+        return (this.mGPUFPS - o.mGPUFPS);
+    }
 }

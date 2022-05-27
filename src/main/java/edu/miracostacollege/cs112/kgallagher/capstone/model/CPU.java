@@ -2,7 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class CPU extends ComputerPart{
+public class CPU extends ComputerPart implements Comparable<CPU>{
     private int mCores;
     private double mSpeed;
 
@@ -45,4 +45,10 @@ public class CPU extends ComputerPart{
     }
 
     //TODO: COMPARISON
+    public int compareTo(CPU o){
+        int coreComp = this.mCores - o.mCores;
+        if(coreComp != 0) return coreComp;
+
+        return ((int)(this.mSpeed - o.mSpeed));
+    }
 }

@@ -2,6 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.view;
 
 import edu.miracostacollege.cs112.kgallagher.capstone.Controller.Controller;
 import edu.miracostacollege.cs112.kgallagher.capstone.model.ComputerPart;
+import edu.miracostacollege.cs112.kgallagher.capstone.view.MainScene;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -40,9 +41,17 @@ public class ListScene extends Scene {
         this.setRoot(pane);
 
         goBackButton.setOnAction(event -> goBack());
+        deleteButton.setOnAction(event -> removeBuild());
+
     }
 
     private void goBack(){
         ViewNavigator.loadScene("Computer Comparer", new MainScene());
+    }
+
+    private void removeBuild(){
+        if(selectedPart == null) return;
+        partsList.remove(selectedPart);
+        partsLV.refresh();
     }
 }

@@ -2,7 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class Storage extends ComputerPart {
+public class Storage extends ComputerPart implements Comparable<Storage>{
     private String mStorage;
     private double mStorageAmount;
 
@@ -51,5 +51,11 @@ public class Storage extends ComputerPart {
         mStorageAmount = storageAmount;
     }
 
-    //TODO: COMPARISON
+
+    public int compareTo(Storage o){
+        int typeComp = this.mStorage.compareToIgnoreCase(o.mStorage);
+        if(typeComp!=0) return typeComp;
+
+        return((int)(this.mStorageAmount - o.mStorageAmount));
+    }
 }

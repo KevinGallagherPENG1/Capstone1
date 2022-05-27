@@ -2,7 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class Screen extends ComputerPart {
+public class Screen extends ComputerPart implements Comparable<Screen>{
     private String mScreen;
 
     public String getScreen() {
@@ -41,5 +41,8 @@ public class Screen extends ComputerPart {
         mScreen = screen;
     }
 
-    //TODO: COMPARISON
+
+    public int compareTo(Screen o){
+        return(this.mScreen.compareToIgnoreCase(o.mScreen));
+    }
 }

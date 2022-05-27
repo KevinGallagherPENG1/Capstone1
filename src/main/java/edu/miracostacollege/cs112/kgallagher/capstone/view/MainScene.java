@@ -2,6 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.view;
 
 import edu.miracostacollege.cs112.kgallagher.capstone.Controller.Controller;
 import edu.miracostacollege.cs112.kgallagher.capstone.model.ComputerPart;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 public class MainScene extends Scene {
-    //TODO: URGENT: CONFIGURE ALL COMBOBOXES!!!
+
 
     //fields
     private Label GUITitle = new Label("Computer Comparer");
@@ -68,7 +69,7 @@ public class MainScene extends Scene {
 
     private ComputerPart selectedComputer;
 
-    private ListView<ComputerPart> computerLV = new ListView<>();
+    public ListView<ComputerPart> computerLV = new ListView<>();
 
 
 
@@ -90,8 +91,9 @@ public class MainScene extends Scene {
         addToButton.isFocused();
 
         //comboBox config
-        //TODO: COMBOBOX!!!
+
         CPUCoreCB.getItems().addAll(1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20);
+        CPUCoreCB.getSelectionModel().select(2);
         CoolingTypeCB.getItems().addAll("Heat Sink", "Liquid Cooling");
 
 
@@ -200,8 +202,8 @@ public class MainScene extends Scene {
 
     private void addComputer(){
         String nameCPU, nameRAM, nameGPU, nameStorage, nameScreen, nameCooling, screenHZ, storageType;
-        int cores, speedRAM;
-        double speedCPU, GBRAM, storageAmount;
+        int cores;
+        double speedCPU, GBRAM, storageAmount, speedRAM;
 
         nameCPU = CPUTF.getText();
         errLabel.setVisible(nameCPU.isEmpty());
@@ -215,6 +217,25 @@ public class MainScene extends Scene {
         errLabel.setVisible(nameCooling.isEmpty());
         nameScreen = ScreenNameTF.getText();
         errLabel.setVisible(nameScreen.isEmpty());
+
+        screenHZ = ScreenTF.getText();
+        errLabel.setVisible(screenHZ.isEmpty());
+        storageType = StorageCB.getSelectionModel().getSelectedItem();
+        errLabel.setVisible(storageType.isEmpty());
+        cores = CPUCoreCB.getSelectionModel().getSelectedItem();
+        speedRAM = Double.parseDouble(RAMSpeedTF.getText());
+        numberErrLabel1.setVisible(speedRAM == 0.00d);
+        storageAmount = Double.parseDouble(StorageTF.getText());
+        numberErrLabel2.setVisible(storageAmount==0.00d);
+        speedCPU = CPUSpeedS.getValue();
+        GBRAM = RAMGBSlider.getValue();
+
+        //TODO: HERE IS THE MAIN PROBLEM
+        //computerList.add(nameCPU, cores, speedCPU, nameRAM, GBRAM, speedRAM, nameGPU, nameStorage, storageType, storageAmount, nameCooling, nameScreen, screenHZ);
+
+        computerLV.refresh();
     }
+
+
 
 }

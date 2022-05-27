@@ -2,7 +2,7 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class Cooling extends ComputerPart{
+public class Cooling extends ComputerPart implements Comparable<Cooling>{
     private String mCoolingType;
 
     public String getCoolingType() {
@@ -39,5 +39,9 @@ public class Cooling extends ComputerPart{
 
     public Cooling(String coolingType) {
         mCoolingType = coolingType;
+    }
+
+    public int compareTo(Cooling o){
+        return(mCoolingType.compareToIgnoreCase(o.mCoolingType));
     }
 }

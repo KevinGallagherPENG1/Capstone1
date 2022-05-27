@@ -2,9 +2,9 @@ package edu.miracostacollege.cs112.kgallagher.capstone.model;
 
 import java.util.Objects;
 
-public class RAM extends ComputerPart {
+public class RAM extends ComputerPart implements Comparable<RAM> {
     private double mRAMGB;
-    private int mRAMSpeed;
+    private double mRAMSpeed;
 
     public double getRAMGB() {
         return mRAMGB;
@@ -14,7 +14,7 @@ public class RAM extends ComputerPart {
         mRAMGB = RAMGB;
     }
 
-    public int getRAMSpeed() {
+    public double getRAMSpeed() {
         return mRAMSpeed;
     }
 
@@ -36,7 +36,7 @@ public class RAM extends ComputerPart {
         return Objects.hash(super.hashCode(), mRAMGB, mRAMSpeed);
     }
 
-    //TODO: Clean up toString for RAM, constructor, review inheritance / comparison
+
     @Override
     public String toString() {
         return "RAM{" +
@@ -46,10 +46,16 @@ public class RAM extends ComputerPart {
                 '}';
     }
 
-    public RAM(double RAMGB, int RAMSpeed) {
+    public RAM(double RAMGB, double RAMSpeed) {
         mRAMGB = RAMGB;
         mRAMSpeed = RAMSpeed;
     }
 
-    //TODO: COMPARISON
+
+    public int compareTo(RAM o){
+        int GBComp =(int)( this.mRAMGB - o.mRAMGB);
+        if(GBComp != 0) return GBComp;
+
+        return ((int)(this.mRAMSpeed - o.mRAMSpeed));
+    }
 }
